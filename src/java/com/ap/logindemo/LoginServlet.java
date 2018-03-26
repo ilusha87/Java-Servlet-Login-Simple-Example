@@ -21,15 +21,23 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
-    private final String user = "demo";
-    private final String password = "demo";
+    private final AuthenticationService authenticationService;
+
+    public LoginServlet() {
+    
+        authenticationService = new AuthenticationService();
+        authenticationService.registerUser(new User("demo", "demo"));
+    
+    }
+
+    
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String paramUsername = req.getParameter("username");
         String paramPassword = req.getParameter("password");
         
-        if (user.equals(paramUsername) && password.equals(paramPassword)) {
+        if (authenticationService.authenticate(paramUsername, paramPassword)) {
             //Se l'autenticazione va a buon fine
             
             // Recupero la sessione
