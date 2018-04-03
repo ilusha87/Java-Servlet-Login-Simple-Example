@@ -5,18 +5,25 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+        <title>Hello, world!</title>
+        <%@include file="templates/header.jsp" %>
     </head>
     <body>
-        <h1>Login Page</h1>
-        <form action="${pageContext.request.contextPath}/login" method="POST">
-            <input type="text" name="username"/>
-            <input type="password" name="password" />
-            <input type="submit" value="Login"/>
-        </form>
+        <%@include file="templates/navbar.jsp" %>
+        <div class="container"><h1>Login Page</h1>
+
+
+            <form action="${pageContext.request.contextPath}/login" method="POST">
+                <input type="text" name="username"/>
+                <input type="password" name="password" />
+                <input type="submit" value="Login"/>
+            </form>
+        </div>
     </body>
 </html>
+
+

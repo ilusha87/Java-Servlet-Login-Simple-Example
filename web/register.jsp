@@ -1,23 +1,40 @@
 <%-- 
-    Document   : register
-    Created on : 26-mar-2018, 17.11.41
+
+    Document   : registration
+    Created on : 26-mar-2018, 22.04.08
     Author     : prof.andreapollini
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+        <title>Hello, world!</title>
+        <%@include file="templates/header.jsp" %>
     </head>
     <body>
-        <h1>User Registration</h1>
-        <form action="${pageContext.request.contextPath}/register" method="POST">
-            Utente:<input type="text" name="username"/><br/>
-            Password:<input type="password" name="password" /><br/>
-            Password:<input type="password" name="passwordRep" /><br/>
-            <input type="submit" value="Login"/>
-        </form>
-    </body>
-</html>
+        <%@include file="templates/navbar.jsp" %>
+        <div class="container"><h1>Register Page</h1>
+
+
+            <form action="${pageContext.request.contextPath}/register" method="POST">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" />
+                </div>
+                <div class="form-group">
+                    <label for="passwordRep">Password(again) ${requestScope.error}</label>
+                    <input type="password" name="passwordRep" />
+                </div>
+                
+                
+                
+                <button type="submit" class="btn btn-primary" value="Login">Register</button>
+            </form>
+        </div>
+<%@include file="templates/footer.jsp" %>

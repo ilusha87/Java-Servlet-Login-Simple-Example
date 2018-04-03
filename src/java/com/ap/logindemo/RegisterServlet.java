@@ -25,11 +25,10 @@ public class RegisterServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init(); //To change body of generated methods, choose Tools | Templates.
-    
+
+        
         authService = new AuthenticationService();
     }
-    
-    
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -37,20 +36,23 @@ public class RegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String passwordRep = req.getParameter("passwordRep");
         
-        if (!password.equals(passwordRep)) {
+        if(!password.equals(passwordRep)) {
+            req.setAttribute("error", "Passwords doesn't match");
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+            
+            return;
+        }
+        
+        User u = new User(username, password);
+        
+        if(!authService.registerUser(u)) {
             resp.sendRedirect("register.jsp");
             return;
-        } 
-         if (authService.usernameExists(username)) {
-            resp.sendRedirect("register.jsp");
-            return;
-         }
-        
-        User u =  new User(username, password);
-        
-        // registra l'utente
-        authService.registerUser(u);
-        resp.sendRedirect("login.jsp");
+        }
+        resp.sendRedirect("index.jsp");
+    
     }
+
+
 
 }

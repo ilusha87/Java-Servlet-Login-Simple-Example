@@ -5,14 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
+
 <%
  String user = null;
  if(session.getAttribute("user") == null)
@@ -20,8 +13,18 @@
  else
     user = (String)session.getAttribute("user");
 %>
+<!doctype html>
+<html lang="en">
+    <head>
 
-<h3>Hi, ${user}</h3>
-<a href="${pageContext.request.contextPath}/logout">logout</a>
+        <title>Hello, world!</title>
+        <%@include file="templates/header.jsp" %>
+    </head>
+    <body>
+        <%@include file="templates/navbar.jsp" %>
+        <div class="container"><h1>Reserved area for: ${user}</h1>
+
+
+        </div>
     </body>
 </html>
